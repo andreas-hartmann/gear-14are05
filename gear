@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ "$1" == "" ] || [ $# -gt 1 ]; then
+        echo "Usage: gear <0,1,2>"
+        exit 1
+elif [ "$1" == "0" ]; then
+	echo "Battery Saving"
+	echo '\_SB.PCI0.LPC0.EC0.VPC0.DYTC 0x0013B001' > /proc/acpi/call
+        exit 0
+elif [ "$1" == "1" ]; then
+	echo "Intelligent Cooling"
+	echo '\_SB.PCI0.LPC0.EC0.VPC0.DYTC 0x000FB001' > /proc/acpi/call
+        exit 0
+elif [ "$1" == "2" ]; then
+	echo "Extreme Performance"
+	echo '\_SB.PCI0.LPC0.EC0.VPC0.DYTC 0x0012B001' > /proc/acpi/call
+        exit 0
+else
+        echo "Invalid gear."
+fi
